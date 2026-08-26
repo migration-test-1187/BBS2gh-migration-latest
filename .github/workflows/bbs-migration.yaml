@@ -700,6 +700,9 @@ jobs:
           FAIL_ON_VALIDATION_FAILURES: ${{ vars.FAIL_ON_VALIDATION_FAILURES }}
         run: |
           set -euo pipefail
+          echo "$GH_PAT" | gh auth login --hostname "$GH_HOST" --with-token
+          gh auth status --hostname "$GH_HOST"
+          gh auth status
           export GH_CONFIG_DIR="$RUNNER_TEMP/gh-dr"
           chmod +x "$GITHUB_WORKSPACE"/scripts/*.sh || true
 
