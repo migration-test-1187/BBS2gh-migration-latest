@@ -40,23 +40,23 @@ log_success() { echo -e "${C_GREEN}[OK]${C_NC} $1"       | tee -a "$LOG_FILE"; }
 log_warning() { echo -e "${C_YELLOW}[WARNING]${C_NC} $1" | tee -a "$LOG_FILE"; }
 log_error()   { echo -e "${C_RED}[ERROR]${C_NC} $1"      | tee -a "$LOG_FILE" >&2; }
 
-ensure_tooling() {
-  if ! command -v gh >/dev/null 2>&1; then
-    log_error "GitHub CLI (gh) is not installed. See https://cli.github.com/"
-    exit 1
-  fi
-  log_info "gh version: $(gh --version | head -n 1)"
-}
+# ensure_tooling() {
+#   if ! command -v gh >/dev/null 2>&1; then
+#     log_error "GitHub CLI (gh) is not installed. See https://cli.github.com/"
+#     exit 1
+#   fi
+#   log_info "gh version: $(gh --version | head -n 1)"
+# }
 
-ensure_auth() {
-  if [[ -n "${GH_PAT:-}" && -z "${GH_TOKEN:-}" ]]; then
-    export GH_TOKEN="$GH_PAT"
-  fi
-  if ! gh auth status >/dev/null 2>&1; then
-    log_error "GitHub CLI not authenticated. Run: gh auth login (or set GH_TOKEN/GH_PAT)."
-    exit 1
-  fi
-}
+# ensure_auth() {
+#   if [[ -n "${GH_PAT:-}" && -z "${GH_TOKEN:-}" ]]; then
+#     export GH_TOKEN="$GH_PAT"
+#   fi
+#   if ! gh auth status >/dev/null 2>&1; then
+#     log_error "GitHub CLI not authenticated. Run: gh auth login (or set GH_TOKEN/GH_PAT)."
+#     exit 1
+#   fi
+# }
 
 ensure_tooling
 ensure_auth
