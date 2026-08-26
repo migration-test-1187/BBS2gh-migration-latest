@@ -58,8 +58,8 @@ log_error()   { echo -e "${C_RED}[ERROR]${C_NC} $1"      | tee -a "$LOG_FILE" >&
 #   fi
 # }
 
-ensure_tooling
-ensure_auth
+# ensure_tooling
+# ensure_auth
 
 if [[ -z "$BBS_BASE_URL" ]]; then
   log_error "BBS_BASE_URL is required (pass -b or export BBS_BASE_URL)."
